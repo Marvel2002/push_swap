@@ -6,7 +6,7 @@
 /*   By: mmatime <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 14:47:11 by mmatime           #+#    #+#             */
-/*   Updated: 2018/01/19 15:58:18 by mmatime          ###   ########.fr       */
+/*   Updated: 2018/01/19 16:52:41 by mmatime          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,33 @@ void	ft_put_int_tab(int *tab, int i)
 	}
 }
 
+int		ft_test_doublons(char **argv)
+{
+	int i;
+	int cmp;
+	int cmp_2;
+	
+	i = 1;
+	cmp = 0;
+	while (argv[i])
+		i++;
+	i--;
+	while (i > 0)
+	{
+		cmp_2 = i - 1;
+		while (cmp_2 > 0)
+		{
+			cmp = ft_strcmp(argv[i], argv[cmp_2]);
+			if (cmp == 0)
+				return (0);
+			else
+				cmp_2--;
+		}
+		i--;
+	}
+	return (1);
+}
+
 int			main(int argc, char **argv)
 {
 	int i;
@@ -62,7 +89,7 @@ int			main(int argc, char **argv)
 	
 	i = 1;
 	pile_a = NULL;
-	if (argc > 1)
+	if (argc > 1 && ft_test_doublons(argv))
 	{
 		while (i < argc)
 		{
@@ -77,10 +104,11 @@ int			main(int argc, char **argv)
 	}
 	else
 	{
-		ft_putstr("error, not enough arguments\n");
+		ft_putstr("error, not enough arguments or same values registered\n");
 		return (0);
 	}
 	pile_a = init_pile_a(i, argv);
-	ft_put_int_tab(pile_a, i);
+	//ft_put_int_tab(pile_a, i);
+	ft_putstrtab(argv);
 	return (0);
 }
