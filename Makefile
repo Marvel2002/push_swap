@@ -6,7 +6,7 @@
 #    By: mmatime <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/22 12:53:47 by mmatime           #+#    #+#              #
-#    Updated: 2018/01/22 13:10:37 by mmatime          ###   ########.fr        #
+#    Updated: 2018/01/22 22:04:00 by mmatime          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ all: $(NAME)
 
 clean:
 	make -C $(LIB_PATH) clean
-	/bin/rm -f $(OBJ)
+	/bin/rm -f $(OBJ_SRC)
 
 fclean: clean
 	make -C $(LIB_PATH) fclean
