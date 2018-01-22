@@ -6,7 +6,7 @@
 /*   By: mmatime <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:12:24 by mmatime           #+#    #+#             */
-/*   Updated: 2018/01/22 22:03:09 by mmatime          ###   ########.fr       */
+/*   Updated: 2018/01/22 22:24:03 by mmatime          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ int			count_int_argv(char **argv)
 	return (nb);
 }
 
-void		add_from_tab(t_env *a, char **tab, int i)
+void		add_from_tab(t_env *a, char **tab, int k)
 {
 	int index;
 	int index_i;
 
 	index = 0;
-	index_i = i - 1;
+	index_i = k;
 	while (tab[index])
 	{
 		a->pile_a[index_i] = ft_atoi(tab[index]);
@@ -120,12 +120,19 @@ void		pile_init(t_env *a, char **argv)
 		tab = ft_strsplit(argv[i], ' ');
 		nb = count_int_tab(tab);
 		if (nb == 1)
-			a->pile_a[i - 1] = ft_atoi(argv[i]);
+		{
+			a->pile_a[k] = ft_atoi(argv[i]);
+			k++;
+		}
 		else
-			add_from_tab(a, tab, i);
+		{
+			add_from_tab(a, tab, k);
+			k += nb;
+		}
 		free_tab(tab);
 		i++;
 	}
+	k = 0;
 	while (k < a->pile_max)
 	{
 		ft_putnbr(a->pile_a[k]);
