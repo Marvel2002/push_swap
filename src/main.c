@@ -6,7 +6,7 @@
 /*   By: mmatime <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:12:24 by mmatime           #+#    #+#             */
-/*   Updated: 2018/01/23 15:00:37 by mmatime          ###   ########.fr       */
+/*   Updated: 2018/01/23 16:27:52 by mmatime          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,15 @@ void		add_from_tab(t_env *a, char **tab, int k)
 
 void		pile_init(t_env *a, char **argv)
 {
+	a->pile_max = count_int_argv(argv);
+	a->pile_a = (int*)ft_memalloc(sizeof(int*) * a->pile_max);
+	a->pile_b = (int*)ft_memalloc(sizeof(int*) * a->pile_max);
+	a->size_a = a->pile_max;
+	a->size_b = 0;
+}
+
+void	pile_fill(t_env *a, char **argv)
+{
 	int i;
 	int nb;
 	char **tab;
@@ -111,10 +120,8 @@ void		pile_init(t_env *a, char **argv)
 
 	i = 1;
 	nb = 0;
-	k = 0;
 	tab = NULL;
-	a->pile_max = count_int_argv(argv);
-	a->pile_a = (int*)ft_memalloc(sizeof(int*) * a->pile_max);
+	k = 0;
 	while (argv[i])
 	{
 		tab = ft_strsplit(argv[i], ' ');
@@ -131,14 +138,22 @@ void		pile_init(t_env *a, char **argv)
 		}
 		free_tab(tab);
 		i++;
-	}
-	k = 0;
-	while (k < a->pile_max)
+	}	
+}
+
+void	ft_puttabint(int *tab, int count)
+{
+	int i;
+
+	i = 0;
+	while (i < count)
 	{
-		ft_putnbr(a->pile_a[k]);
-		k++;
+		ft_putnbr(tab[i]);
+		ft_putchar('\n');
+		i++;
 	}
 }
+	
 
 int		main(int argc, char **argv)
 {
@@ -148,7 +163,30 @@ int		main(int argc, char **argv)
 	if (argc > 1 && valid_tab(argv))
 	{
 		if ((a = (t_env*)malloc(sizeof(*a))))
+		{
 			pile_init(a, argv);
+			pile_fill(a, argv);
+			ft_putstr("pile_A = \n");
+			ft_puttabint(a->pile_a, a->size_a);
+			ft_putstr("pile_B = \n");
+			ft_puttabint(a->pile_b, a->size_b);
+			ft_push_b(a);
+			ft_putstr("pile_A = \n");
+			ft_puttabint(a->pile_a, a->size_a);
+			ft_putstr("pile_B = \n");
+			ft_puttabint(a->pile_b, a->size_b);
+			ft_push_b(a);
+			ft_putstr("pile_A = \n");
+			ft_puttabint(a->pile_a, a->size_a);
+			ft_putstr("pile_B = \n");
+			ft_puttabint(a->pile_b, a->size_b);
+			ft_push_b(a);
+			ft_putstr("pile_A = \n");
+			ft_puttabint(a->pile_a, a->size_a);
+			ft_putstr("pile_B = \n");
+			ft_puttabint(a->pile_b, a->size_b);
+			ft_push_b(a);
+		}
 		else
 			return (0);
 	}
