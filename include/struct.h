@@ -6,7 +6,7 @@
 /*   By: mmatime <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/22 12:11:01 by mmatime           #+#    #+#             */
-/*   Updated: 2018/01/22 22:03:12 by mmatime          ###   ########.fr       */
+/*   Updated: 2018/01/23 15:00:36 by mmatime          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct	s_env
 {
 	int		*pile_a;
 	int		*pile_b;
+	int		size_a;
+	int		size_b;
 	int		pile_max;
 }				t_env;
 
