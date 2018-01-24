@@ -35,5 +35,6 @@ void	ft_rotate_a(t_env *a);
 void	ft_reverse_rotate_a(t_env *a);
 void	ft_push_a(t_env *a);
 void	ft_push_b(t_env *a);
+void	free_tab(char **tab);
 
 #endif

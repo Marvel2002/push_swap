@@ -87,11 +87,13 @@ int		ft_test_duplicate(char **argv)
 					j++;
 				else
 					return (0);
+				free_tab(tab_2);
 			}
 		}
 		else
 			return (0);
 		i++;
+		free_tab(tab_1);
 	}
 	return (1);
 }
@@ -112,7 +114,7 @@ int		valid_tab(char **argv)
 		{
 			while (argv[i][j] == ' ' || argv[i][j] == '\t')
 				j++;
-			if (valid_char(argv[i][j], argv[i][j + 1]) || valid_char(argv[i][j], argv[i][j + 1]))
+			if (valid_char(argv[i][j], argv[i][j + 1]))
 				j++;
 			else
 				return (0);
@@ -182,8 +184,8 @@ void		add_from_tab(t_env *a, char **tab, int k)
 void		pile_init(t_env *a, char **argv)
 {
 	a->pile_max = count_int_argv(argv);
-	a->pile_a = (int*)ft_memalloc(sizeof(int*) * a->pile_max);
-	a->pile_b = (int*)ft_memalloc(sizeof(int*) * a->pile_max);
+	a->pile_a = (int*)ft_memalloc(sizeof(int) * a->pile_max);
+	a->pile_b = (int*)ft_memalloc(sizeof(int) * a->pile_max);
 	a->size_a = a->pile_max;
 	a->size_b = 0;
 }
@@ -242,6 +244,7 @@ int		main(int argc, char **argv)
 		if ((a = (t_env*)malloc(sizeof(*a))))
 		{
 			ft_putstr("OK\n");
+			while (1);
 			/*pile_init(a, argv); // toutes ces opérations servent à tester les fonctions pour avoir le même résultat que le sujet
 			pile_fill(a, argv);
 			ft_putstr("pile_A = \n");
@@ -284,7 +287,7 @@ int		main(int argc, char **argv)
 			ft_puttabint(a->pile_b, a->size_b);*/
 		}
 		else
-			return (0);
+			ft_putstr("Error\n");
 	}
 	else
 		ft_putstr("Error\n");
