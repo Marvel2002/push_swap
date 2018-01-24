@@ -22,6 +22,81 @@ int		valid_char(char nb, char nb_plus)
 		return (0);
 }
 
+int		ft_compare_one_tab(char **tab)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (tab[i])
+	{
+		j = i + 1;
+		while (tab[j])
+		{
+			if (ft_strcmp(tab[i], tab[j]) == 0)
+				return (0);
+			else
+				j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int		ft_compare_tabs(char **tab_1, char **tab_2)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (tab_1[i])
+	{
+		j = 0;
+		while (tab_2[j])
+		{
+			if (ft_strcmp(tab_1[i], tab_2[j]) == 0)
+				return (0);
+			else
+				j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int		ft_test_duplicate(char **argv)
+{
+	int i;
+	int j;
+	char **tab_1;
+	char **tab_2;
+
+	i = 1;
+	tab_1 = NULL;
+	tab_2 = NULL;
+	while (argv[i])
+	{
+		tab_1 = ft_strsplit(argv[i], ' ');
+		if (ft_compare_one_tab(tab_1))
+		{
+			j = i + 1;
+			while (argv[j])
+			{
+				tab_2 = ft_strsplit(argv[j], ' ');
+				if (ft_compare_tabs(tab_1, tab_2))
+					j++;
+				else
+					return (0);
+			}
+		}
+		else
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+
 int		valid_tab(char **argv)
 {
 	int i;
@@ -160,37 +235,56 @@ int		main(int argc, char **argv)
 	t_env *a;
 
 	a = NULL;
-	if (argc > 1 && valid_tab(argv))
+	if (argc > 1 && valid_tab(argv) && ft_test_duplicate(argv))
 	{
 		if ((a = (t_env*)malloc(sizeof(*a))))
 		{
-			pile_init(a, argv);
+			ft_putstr("OK\n");
+			/*pile_init(a, argv); // toutes ces opérations servent à tester les fonctions pour avoir le même résultat que le sujet
 			pile_fill(a, argv);
 			ft_putstr("pile_A = \n");
 			ft_puttabint(a->pile_a, a->size_a);
 			ft_putstr("pile_B = \n");
 			ft_puttabint(a->pile_b, a->size_b);
-			ft_push_b(a);
+			ft_swap_a(a);
 			ft_putstr("pile_A = \n");
 			ft_puttabint(a->pile_a, a->size_a);
 			ft_putstr("pile_B = \n");
 			ft_puttabint(a->pile_b, a->size_b);
 			ft_push_b(a);
-			ft_putstr("pile_A = \n");
-			ft_puttabint(a->pile_a, a->size_a);
-			ft_putstr("pile_B = \n");
-			ft_puttabint(a->pile_b, a->size_b);
+			ft_push_b(a);
 			ft_push_b(a);
 			ft_putstr("pile_A = \n");
 			ft_puttabint(a->pile_a, a->size_a);
 			ft_putstr("pile_B = \n");
 			ft_puttabint(a->pile_b, a->size_b);
-			ft_push_b(a);
+			ft_rr(a);
+			ft_putstr("pile_A = \n");
+			ft_puttabint(a->pile_a, a->size_a);
+			ft_putstr("pile_B = \n");
+			ft_puttabint(a->pile_b, a->size_b);
+			ft_rrr(a);
+			ft_putstr("pile_A = \n");
+			ft_puttabint(a->pile_a, a->size_a);
+			ft_putstr("pile_B = \n");
+			ft_puttabint(a->pile_b, a->size_b);
+			ft_swap_a(a);
+			ft_putstr("pile_A = \n");
+			ft_puttabint(a->pile_a, a->size_a);
+			ft_putstr("pile_B = \n");
+			ft_puttabint(a->pile_b, a->size_b);
+			ft_push_a(a);
+			ft_push_a(a);
+			ft_push_a(a);
+			ft_putstr("pile_A = \n");
+			ft_puttabint(a->pile_a, a->size_a);
+			ft_putstr("pile_B = \n");
+			ft_puttabint(a->pile_b, a->size_b);*/
 		}
 		else
 			return (0);
 	}
 	else
-		ft_putstr("error\n");
+		ft_putstr("Error\n");
 	return (0);
 }

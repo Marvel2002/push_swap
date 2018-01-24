@@ -58,7 +58,7 @@ void	ft_put_int_tab(int *tab, int i)
 	}
 }
 
-int		ft_test_doublons(char **argv)
+int		ft_test_duplicate(char **argv)
 {
 	int i;
 	int cmp;

@@ -25,11 +25,15 @@ typedef struct	s_env
 	int		pile_max;
 }				t_env;
 
+int		ft_test_duplicate(char **argv);
 void	ft_swap_a(t_env *a);
 void	ft_swap_b(t_env *a);
 void	ft_ss(t_env *a);
+void	ft_rr(t_env *a);
+void	ft_rrr(t_env *a);
 void	ft_rotate_a(t_env *a);
 void	ft_reverse_rotate_a(t_env *a);
+void	ft_push_a(t_env *a);
 void	ft_push_b(t_env *a);
 
 #endif
