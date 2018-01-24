@@ -105,6 +105,8 @@ int		valid_tab(char **argv)
 	i = 1;
 	while (argv[i])
 	{
+		if (ft_strcmp(argv[i], "") == 0)
+			return (0);
 		j = 0;
 		while (argv[i][j])
 		{
