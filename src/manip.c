@@ -26,6 +26,7 @@ void	ft_swap_a(t_env *a)
 		a->pile_a[0] = nb_2;
 		a->pile_a[1] = nb;
 	}
+	a->sa++;
 }
 
 void	ft_swap_b(t_env *a)
@@ -42,12 +43,14 @@ void	ft_swap_b(t_env *a)
 		a->pile_b[0] = nb_2;
 		a->pile_b[1] = nb;
 	}
+	a->sb++;
 }
 
 void	ft_ss(t_env *a)
 {
 	ft_swap_a(a);
 	ft_swap_b(a);
+	a->ss++;
 }
 
 void	ft_rotate_a(t_env *a)
@@ -63,6 +66,7 @@ void	ft_rotate_a(t_env *a)
 		i++;
 	}
 	a->pile_a[i] = last;
+	a->ra++;
 }
 
 void	ft_rotate_b(t_env *a)
@@ -78,12 +82,14 @@ void	ft_rotate_b(t_env *a)
 		i++;
 	}
 	a->pile_b[i] = last;
+	a->rb++;
 }
 
 void	ft_rr(t_env *a)
 {
 	ft_rotate_a(a);
 	ft_rotate_b(a);
+	a->rr++;
 }
 
 void	ft_reverse_rotate_a(t_env *a)
@@ -99,6 +105,7 @@ void	ft_reverse_rotate_a(t_env *a)
 		i--;
 	}
 	a->pile_a[i] = first;
+	a->rra++;
 }
 
 void	ft_reverse_rotate_b(t_env *a)
@@ -114,12 +121,14 @@ void	ft_reverse_rotate_b(t_env *a)
 		i--;
 	}
 	a->pile_b[i] = first;
+	a->rrb++;
 }
 
 void	ft_rrr(t_env *a)
 {
 	ft_reverse_rotate_a(a);
 	ft_reverse_rotate_b(a);
+	a->rrr++;
 }
 
 void	ft_push_a(t_env *a)
@@ -127,12 +136,6 @@ void	ft_push_a(t_env *a)
 	int i;
 
 	i = a->size_a;
-	ft_putstr("size_b = ");
-	ft_putnbr(a->size_b);
-	ft_putchar('\n');
-	ft_putstr("size_a = ");
-	ft_putnbr(a->size_a);
-	ft_putchar('\n'); 
 	if (a->size_b)
 	{
 		while (i > 0)
@@ -150,6 +153,7 @@ void	ft_push_a(t_env *a)
 			i++;
 		}
 	}
+	a->pa++;
 }
 
 void	ft_push_b(t_env *a)
@@ -157,12 +161,6 @@ void	ft_push_b(t_env *a)
 	int i;
 
 	i = a->size_b;
-	ft_putstr("size_a = ");
-	ft_putnbr(a->size_a);
-	ft_putchar('\n');
-	ft_putstr("size_b = ");
-	ft_putnbr(a->size_b);
-	ft_putchar('\n');
 	if (a->size_a)
 	{
 		while (i > 0)
@@ -180,4 +178,5 @@ void	ft_push_b(t_env *a)
 			i++;
 		}
 	}
+	a->pb++;
 }

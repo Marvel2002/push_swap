@@ -188,6 +188,19 @@ void		pile_init(t_env *a, char **argv)
 	a->pile_b = (int*)ft_memalloc(sizeof(int) * a->pile_max);
 	a->size_a = a->pile_max;
 	a->size_b = 0;
+	a->push_on_a = 0;
+	a->push_on_b = 0;
+	a->sa = 0;
+	a->sb = 0;
+	a->ss = 0;
+	a->pa = 0;
+	a->pb = 0;
+	a->ra = 0;
+	a->rb = 0;
+	a->rr = 0;
+	a->rra = 0;
+	a->rrb = 0;
+	a->rrr = 0;
 }
 
 void	pile_fill(t_env *a, char **argv)
@@ -220,19 +233,103 @@ void	pile_fill(t_env *a, char **argv)
 	}	
 }
 
-void	ft_puttabint(int *tab, int count)
+void	display(int *tab, int count, char c)
 {
 	int i;
 
 	i = 0;
+	ft_putstr("pile ");
+	ft_putchar(c);
+	ft_putstr("= ");
 	while (i < count)
 	{
 		ft_putnbr(tab[i]);
-		ft_putchar('\n');
+		ft_putchar(' ');
 		i++;
 	}
+	ft_putchar('\n');
 }
-	
+
+int		first_is_max(int nb, t_env *a)
+{
+	int i;
+
+	i = 1;
+	while (i < a->size_a)
+	{
+		if (nb > a->pile_a[i])
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int		last_is_min(int nb, int index, t_env *a)
+{
+	int i;
+
+	i = index;
+	while (i > 0)
+	{
+		if (nb <= a->pile_a[i])
+			i--;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+void	sort_pile_a(t_env *a)
+{
+	int i;
+
+	i = 0;
+	while (i < a->size_a && a->pile_max > 1)
+	{
+		if (i == 0 && first_is_max(a->pile_a[i], a))
+			ft_rotate_a(a);
+		else if (i == a->size_a - 1 && last_is_min(a->pile_a[i], i, a) && a->size_a > 2)
+			ft_reverse_rotate_a(a);
+		else if (i == 1 && a->pile_a[i] < a->pile_a[i - 1])
+		{
+			ft_swap_a(a);
+			i = 0;
+		}
+		else if (i > 1 && a->pile_a[i] < a->pile_a[i - 1])
+		{
+			ft_push_b(a);
+			i = 0;
+		}
+		else
+			i++;
+	}
+}
+
+void	start_sort(t_env *a)
+{
+	sort_pile_a(a);
+	while (a->size_b)
+	{
+		ft_push_a(a);
+		sort_pile_a(a);
+	}
+}
+
+void	display_instruct(t_env *a)
+{
+	printf("sa = %d\n", a->sa);
+	printf("sb = %d\n", a->sb);
+	printf("ss = %d\n", a->ss);
+	printf("pa = %d\n", a->pa);
+	printf("pb = %d\n", a->pb);
+	printf("ra = %d\n", a->ra);
+	printf("rb = %d\n", a->rb);
+	printf("rr = %d\n", a->rr);
+	printf("rra = %d\n", a->rra);
+	printf("rrb = %d\n", a->rrb);
+	printf("rrr = %d\n", a->rrr);
+}
 
 int		main(int argc, char **argv)
 {
@@ -244,47 +341,11 @@ int		main(int argc, char **argv)
 		if ((a = (t_env*)malloc(sizeof(*a))))
 		{
 			ft_putstr("OK\n");
-			while (1);
-			/*pile_init(a, argv); // toutes ces opérations servent à tester les fonctions pour avoir le même résultat que le sujet
+			pile_init(a, argv); 
 			pile_fill(a, argv);
-			ft_putstr("pile_A = \n");
-			ft_puttabint(a->pile_a, a->size_a);
-			ft_putstr("pile_B = \n");
-			ft_puttabint(a->pile_b, a->size_b);
-			ft_swap_a(a);
-			ft_putstr("pile_A = \n");
-			ft_puttabint(a->pile_a, a->size_a);
-			ft_putstr("pile_B = \n");
-			ft_puttabint(a->pile_b, a->size_b);
-			ft_push_b(a);
-			ft_push_b(a);
-			ft_push_b(a);
-			ft_putstr("pile_A = \n");
-			ft_puttabint(a->pile_a, a->size_a);
-			ft_putstr("pile_B = \n");
-			ft_puttabint(a->pile_b, a->size_b);
-			ft_rr(a);
-			ft_putstr("pile_A = \n");
-			ft_puttabint(a->pile_a, a->size_a);
-			ft_putstr("pile_B = \n");
-			ft_puttabint(a->pile_b, a->size_b);
-			ft_rrr(a);
-			ft_putstr("pile_A = \n");
-			ft_puttabint(a->pile_a, a->size_a);
-			ft_putstr("pile_B = \n");
-			ft_puttabint(a->pile_b, a->size_b);
-			ft_swap_a(a);
-			ft_putstr("pile_A = \n");
-			ft_puttabint(a->pile_a, a->size_a);
-			ft_putstr("pile_B = \n");
-			ft_puttabint(a->pile_b, a->size_b);
-			ft_push_a(a);
-			ft_push_a(a);
-			ft_push_a(a);
-			ft_putstr("pile_A = \n");
-			ft_puttabint(a->pile_a, a->size_a);
-			ft_putstr("pile_B = \n");
-			ft_puttabint(a->pile_b, a->size_b);*/
+			start_sort(a);
+			display(a->pile_a, a->size_a, 'a');
+			display_instruct(a);
 		}
 		else
 			ft_putstr("Error\n");

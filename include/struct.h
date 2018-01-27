@@ -15,6 +15,7 @@
 #define STRUCT_H
 
 #include "../libft/libft.h"
+#include <stdio.h>
 
 typedef struct	s_env
 {
@@ -23,6 +24,19 @@ typedef struct	s_env
 	int		size_a;
 	int		size_b;
 	int		pile_max;
+	int		push_on_a;
+	int		push_on_b;
+	int		sa;
+	int		sb;
+	int		ss;
+	int		pa;
+	int		pb;
+	int		ra;
+	int		rb;
+	int		rr;
+	int		rra;
+	int		rrb;
+	int		rrr;
 }				t_env;
 
 int		ft_test_duplicate(char **argv);
