@@ -25,8 +25,8 @@ void	ft_swap_a(t_env *a)
 		nb_2 = a->pile_a[1];
 		a->pile_a[0] = nb_2;
 		a->pile_a[1] = nb;
+		a->sa++;
 	}
-	a->sa++;
 }
 
 void	ft_swap_b(t_env *a)
@@ -42,8 +42,8 @@ void	ft_swap_b(t_env *a)
 		nb_2 = a->pile_b[1];
 		a->pile_b[0] = nb_2;
 		a->pile_b[1] = nb;
+		a->sb++;
 	}
-	a->sb++;
 }
 
 void	ft_ss(t_env *a)

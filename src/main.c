@@ -250,7 +250,7 @@ void	display(int *tab, int count, char c)
 	ft_putchar('\n');
 }
 
-int		first_is_max(int nb, t_env *a)
+int		nb_is_max_a(int nb, t_env *a)
 {
 	int i;
 
@@ -258,6 +258,36 @@ int		first_is_max(int nb, t_env *a)
 	while (i < a->size_a)
 	{
 		if (nb > a->pile_a[i])
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int		nb_is_max_b(int nb, t_env *a)
+{
+	int i;
+
+	i = 0;
+	while (i < a->size_b)
+	{
+		if (nb > a->pile_b[i])
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
+
+int		nb_is_min_b(int nb, t_env *a)
+{
+	int i;
+
+	i = 0;
+	while (i < a->size_b)
+	{
+		if (nb < a->pile_b[i])
 			i++;
 		else
 			return (0);
@@ -280,40 +310,228 @@ int		last_is_min(int nb, int index, t_env *a)
 	return (1);
 }
 
+int		set_index_min_position_b(t_env *a)
+{
+	int i;
+	int nb_min;
+	int index_min;
+
+	i = 1;
+	index_min = 0;
+	nb_min = a->pile_b[0];
+	while (i < a->size_b)
+	{
+		if (nb_min > a->pile_b[i])
+		{
+			index_min = i;
+			nb_min = a->pile_b[i];
+		}
+		i++;
+	}
+	return (index_min);
+}
+
+int		set_index_max_position_b(t_env *a)
+{
+	int i;
+	int nb_max;
+	int index_max;
+
+	i = 1;
+	index_max = 0;
+	nb_max = a->pile_b[0];
+	while (i < a->size_b)
+	{
+		if (nb_max < a->pile_b[i])
+		{
+			index_max = i;
+			nb_max = a->pile_b[i];
+		}
+		i++;
+	}
+	return (index_max);
+}
+
+int		set_index_min_position_a(t_env *a)
+{
+	int i;
+	int nb_min;
+	int index_min;
+
+	i = 1;
+	index_min = 0;
+	nb_min = a->pile_a[0];
+	while (i < a->size_a)
+	{
+		if (nb_min > a->pile_a[i])
+		{
+			index_min = i;
+			nb_min = a->pile_a[i];
+		}
+		i++;
+	}
+	return (index_min);
+}
+
+void	calcule_rotation_on_b(t_env *a)
+{
+	int index_max;
+
+	index_max = set_index_max_position_b(a);
+	while (index_max > 0)
+	{
+		ft_rotate_b(a);
+		index_max--;
+	}
+	ft_push_b(a);
+}
+
+void	calcule_rotation_mid_b(int nb, t_env *a)
+{
+	int i;
+	int index_mid;
+
+	i = a->size_b - 1;
+	index_mid = 0;
+				ft_putstr("I = ");
+			ft_putnbr_c(i, '\n');
+	while (i > 0)
+	{
+		if (nb > a->pile_b[i] && nb < a->pile_b[i - 1])
+		{
+			ft_putstr("I = ");
+			ft_putnbr_c(i, '\n');
+			ft_putstr("NB = ");
+			ft_putnbr_c(nb, '\n');
+			index_mid = i;
+		}
+		i--;
+	}
+				ft_putstr("I = ");
+			ft_putnbr_c(i, '\n');
+	if ((a->size_b - index_mid) > index_mid)
+	{
+		while (index_mid > 0)
+		{
+			ft_rotate_b(a);
+			index_mid--;
+		}
+		ft_push_b(a);
+	}
+	else
+	{
+		while (index_mid < a->size_b)
+		{
+			ft_reverse_rotate_b(a);
+			index_mid++;
+		}
+		ft_push_b(a);
+	}
+	
+//	ft_putnbr(nb);
+//	ft_putchar('\n');
+//	ft_putnbr(index_mid);
+//	ft_putchar('\n');
+	//display(a->pile_b, a->size_b, 'b');
+}
+
+
+void	sort_pile_b(t_env *a)
+{
+	int i;
+	int index_min;
+	int nb;
+
+	i = a->size_b - 1;
+	index_min = set_index_min_position_b(a);
+	nb = a->pile_a[0];
+	if (a->size_b == 0 || a->size_b == 1)
+		ft_push_b(a);
+	else if (a->size_b == 2)
+	{
+		if (index_min == 0)
+			ft_swap_b(a);
+		ft_push_b(a);
+		if (a->pile_b[0] < a->pile_b[1] && a->pile_b[0] > a->pile_b[2])
+			ft_swap_b(a);
+	}
+	else
+	{
+//		ft_putstr("ROFL1\n");
+		if (nb_is_max_b(nb, a) || nb_is_min_b(nb, a))
+		{
+			if (set_index_max_position_b(a) == 0)
+				ft_push_b(a);
+			else
+				calcule_rotation_on_b(a);
+		}
+		else
+			calcule_rotation_mid_b(nb, a);
+	}
+//	ft_push_b(a);
+//	display(a->pile_b, a->size_b, 'b');
+}
+
 void	sort_pile_a(t_env *a)
 {
 	int i;
+	int index_min_a;
 
 	i = 0;
+	index_min_a = 0;
+	//display(a->pile_a, a->size_a, 'a');
 	while (i < a->size_a && a->pile_max > 1)
 	{
-		if (i == 0 && first_is_max(a->pile_a[i], a))
+
+	//	display(a->pile_a, a->size_a, 'a');	
+	/*	index_min_a = set_index_min_position_a(a);
+		ft_putnbr(index_min_a);
+		ft_putchar('\n');*/
+		if (i == 0 && nb_is_max_a(a->pile_a[i], a))
+		{
+			ft_putstr("R ROTATE A\n");
+	//		display(a->pile_a, a->size_a, 'a');
 			ft_rotate_a(a);
+			ft_putstr("ROTATE A\n");
+	//		display(a->pile_a, a->size_a, 'a');
+		}
 		else if (i == a->size_a - 1 && last_is_min(a->pile_a[i], i, a) && a->size_a > 2)
-			ft_reverse_rotate_a(a);
+		{
+	//		ft_putstr("R ROTATE A\n");
+//			display(a->pile_a, a->size_a, 'a');
+			ft_reverse_rotate_a(a);	
+	//		ft_putstr("R ROTATE A\n");
+//			display(a->pile_a, a->size_a, 'a');
+		}
 		else if (i == 1 && a->pile_a[i] < a->pile_a[i - 1])
 		{
+	//		ft_putstr("SWAP A\n");
+//			display(a->pile_a, a->size_a, 'a');
 			ft_swap_a(a);
+	//		ft_putstr("SWAP A\n");
+//				display(a->pile_a, a->size_a, 'a');
 			i = 0;
 		}
 		else if (i > 1 && a->pile_a[i] < a->pile_a[i - 1])
 		{
-			ft_push_b(a);
+			sort_pile_b(a);
+			//ft_push_b(a);
 			i = 0;
 		}
 		else
 			i++;
 	}
+//	display(a->pile_a, a->size_a, 'a');
 }
 
 void	start_sort(t_env *a)
 {
 	sort_pile_a(a);
-	while (a->size_b)
+/*	while (a->size_b)
 	{
 		ft_push_a(a);
 		sort_pile_a(a);
-	}
+	}*/
 }
 
 void	display_instruct(t_env *a)
@@ -329,6 +547,7 @@ void	display_instruct(t_env *a)
 	printf("rra = %d\n", a->rra);
 	printf("rrb = %d\n", a->rrb);
 	printf("rrr = %d\n", a->rrr);
+
 }
 
 int		main(int argc, char **argv)
@@ -344,7 +563,6 @@ int		main(int argc, char **argv)
 			pile_init(a, argv); 
 			pile_fill(a, argv);
 			start_sort(a);
-			display(a->pile_a, a->size_a, 'a');
 			display_instruct(a);
 		}
 		else
