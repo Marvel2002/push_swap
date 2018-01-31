@@ -621,12 +621,6 @@ void	display_instruct(t_env *a)
 
 }
 
-void	ft_lorem(void)
-{
-	ft_putstr("Aenean sit amet rutrum tortor. Fusce tristique feugiat nunc et aliquet. Vivamus eros nunc, placerat vitae malesuada non, molestie id lectus. Vestibulum purus massa, efficitur quis magna eget, venenatis eleifend neque. Fusce posuere luctus augue, a imperdiet felis auctor ut. Cras commodo ornare sapien. Ut interdum posuere magna sit amet blandit. Vestibulum non tellus at diam volutpat fermentum eget ut lacus. Duis vitae ex ut justo condimentum malesuada eu nec justo. Nullam a vehicula dui, eget bibendum dui. Aenean convallis in odio eget vehicula. Aenean ullamcorper augue nec sagittis tempor.");
-	ft_lorem(void);
-}
-
 int		main(int argc, char **argv)
 {
 	t_env *a;
@@ -641,7 +635,6 @@ int		main(int argc, char **argv)
 			pile_fill(a, argv);
 			start_sort(a);
 			display_instruct(a);
-			ft_lorem();
 		}
 		else
 			ft_putstr("Error\n");
