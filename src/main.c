@@ -618,6 +618,8 @@ void	display_instruct(t_env *a)
 	printf("rra = %d\n", a->rra);
 	printf("rrb = %d\n", a->rrb);
 	printf("rrr = %d\n", a->rrr);
+	printf("TOTAL de %d instructions\n", a->sa + a->sb + a->ss + a->pa + a->pb + a->ra + a->rb + a->rr + a->rrr + a->rrb + a->rrr);
+
 
 }
 
