@@ -52,5 +52,25 @@ void	ft_reverse_rotate_b(t_env *a);
 void	ft_push_a(t_env *a);
 void	ft_push_b(t_env *a);
 void	free_tab(char **tab);
+int		valid_tab(char **argv);
+void	pile_fill(t_env *a, char **argv);
+void	display_instruct(t_env *a);
+void	pile_init(t_env *a, char **argv);
+void	sort_pile_a(t_env *a);
+void	sort_pile_b(t_env *a);
+void	ft_putstr_error(char const *s);
+void	calcule_rotation_mid_b(int nb, t_env *a);
+int		nb_is_max_a(int nb, t_env *a);
+int		nb_is_max_b(int nb, t_env *a);
+int		nb_is_min_b(int nb, t_env *a);
+int		nb_is_min_a(int nb, t_env *a);
+int		last_is_min(int nb, int index, t_env *a);
+int		set_index_min_position_b(t_env *a);
+int		set_index_max_position_b(t_env *a);
+int		set_index_max_position_a(t_env *a);
+int		set_index_min_position_a(t_env *a);
+void	calcule_rotation_on_b(t_env *a);
+void	display(int *tab, int count, char c);
+int		count_int_argv(char **argv);
 
 #endif
