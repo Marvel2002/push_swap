@@ -13,7 +13,7 @@ int		main(int argc, char **argv)
 			pile_init(a, argv); 
 			pile_fill(a, argv);
 			sort_pile_a(a);
-			display_instruct(a);
+		//	display_instruct(a);
 		}
 		else
 			ft_putstr_error("Error\n");

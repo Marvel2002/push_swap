@@ -43,8 +43,8 @@ void	sort_pile_a(t_env *a)
 
 	i = 0;
 	j = 0;
-	ft_putstr("LA PILE RECUE EST : \n");
-	display(a->pile_a, a->size_a, 'a');
+//	ft_putstr("LA PILE RECUE EST : \n");
+//	display(a->pile_a, a->size_a, 'a');
 	while (i < a->pile_max)
 	{
 		if (a->pile_a[0] > a->pile_a[1])
@@ -95,6 +95,6 @@ void	sort_pile_a(t_env *a)
 		ft_reverse_rotate_a(a);
 	while (a->size_b)
 		ft_push_a(a);
-	ft_putstr("LA PILE TRIÉE EST : \n");
-	display(a->pile_a, a->size_a, 'a');
+//	ft_putstr("LA PILE TRIÉE EST : \n");
+//	display(a->pile_a, a->size_a, 'a');
 }
