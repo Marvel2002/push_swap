@@ -67,14 +67,12 @@ void	pile_fill_a(t_pile_a *a, char **argv)
 t_env			*pile_init(void)
 {
 	t_env *a;
-	t_pile_a *pile_a;
-	t_pile_b *pile_b;
 	int count;
 
 	count = count_int_argv(argv);
 	a = (t_env *)ft_memalloc(sizeof(t_env));
-	pile_a = (t_pile_a *)ft_memalloc(sizeof(t_pile_a) * count);
-	pile_b = (t_pile_b *)ft_memalloc(sizeof(t_pile_b) * count);
+	a->pile_a = (pile_a *)ft_memalloc(sizeof(pile_a) * count);
+	a->pile_b = (pile_b *)ft_memalloc(sizeof(pile_b) * count);
 
 	return (a);
 }
