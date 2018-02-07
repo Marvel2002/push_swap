@@ -67,8 +67,10 @@ void	pile_fill_a(t_pile_a *a, char **argv)
 t_pile_a		*pile_init_a(char **argv)
 {
 	t_pile_a 	*a;
+	int 		count;
 
-	a = ft_memalloc(sizeof(t_pile_a) * count_int_argv(argv));
+	count = count_int_argv(argv);
+	a = ft_memalloc(sizeof(t_pile_a) * count);
 	if (!a)
 		return (NULL);
 	else
@@ -81,12 +83,23 @@ t_pile_a		*pile_init_a(char **argv)
 t_pile_b		*pile_init_b(char **argv)
 {
 	t_pile_b 	*b;
+	int			count;
+	int			i;
 
-	b = ft_memalloc(sizeof(t_pile_b) * count_int_argv(argv));
+	i = 0;
+	count = count_int_argv(argv);
+	b = ft_memalloc(sizeof(t_pile_b) * count);
 	if (!b)
 		return (NULL);
 	else
+	{
+		while (i < count)
+		{
+			b[i].index = -1;
+			i++;
+		}
 		return (b);
+	}
 }
 
 void	ft_putstr_error(char const *s)
