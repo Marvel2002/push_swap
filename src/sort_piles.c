@@ -1,6 +1,6 @@
 #include "struct.h"
 
-void	sort_pile_b(t_env *a)
+/*void	sort_pile_b(t_env *a)
 {
 	int i;
 	int index_min;
@@ -97,4 +97,8 @@ void	sort_pile_a(t_env *a)
 		ft_push_a(a);
 //	ft_putstr("LA PILE TRIÉE EST : \n");
 //	display(a->pile_a, a->size_a, 'a');
-}
+}*/
+
+
+
+

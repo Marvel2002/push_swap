@@ -2,17 +2,19 @@
 
 int		main(int argc, char **argv)
 {
-	t_env *a;
+	t_pile_a *a;
+	t_pile_b *b;
 
 	a = NULL;
+	b = NULL;
 	if (argc > 1)
 	{
-		if ((a = (t_env*)malloc(sizeof(*a))) && valid_tab(argv) && ft_test_duplicate(argv))
+		if (valid_tab(argv) && ft_test_duplicate(argv))
 		{
 			ft_putstr("OK\n");
-			pile_init(a, argv); 
-			pile_fill(a, argv);
-			sort_pile_a(a);
+			a = pile_init_a(argv); 
+			b = pile_init_b(argv); 
+	//		sort_pile_a(a);
 		//	display_instruct(a);
 		}
 		else

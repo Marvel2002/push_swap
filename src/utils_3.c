@@ -1,91 +1,92 @@
 #include "struct.h"
 
-void		pile_init(t_env *a, char **argv)
-{
-	a->pile_max = count_int_argv(argv);
-	a->pile_a = (int*)ft_memalloc(sizeof(int) * a->pile_max);
-	a->pile_b = (int*)ft_memalloc(sizeof(int) * a->pile_max);
-	a->size_a = a->pile_max;
-	a->size_b = 0;
-	a->push_on_a = 0;
-	a->push_on_b = 0;
-	a->sa = 0;
-	a->sb = 0;
-	a->ss = 0;
-	a->pa = 0;
-	a->pb = 0;
-	a->ra = 0;
-	a->rb = 0;
-	a->rr = 0;
-	a->rra = 0;
-	a->rrb = 0;
-	a->rrr = 0;
-}
-
-void	calcule_rotation_mid_b(int nb, t_env *a)
+void	pile_fill_a_index(t_pile_a *a, int pile_max)
 {
 	int i;
-	int index_mid;
-
-	i = a->size_b - 1;
-	index_mid = 0;
-	while (i > 0)
-	{
-		if (nb > a->pile_b[i] && nb < a->pile_b[i - 1])
-			index_mid = i;
-		i--;
-	}
-	if ((a->size_b - index_mid) > index_mid)
-	{
-		while (index_mid > 0)
-		{
-			ft_rotate_b(a);
-			index_mid--;
-		}
-		ft_push_b(a);
-	}
-	else
-	{
-		while (index_mid < a->size_b)
-		{
-			ft_reverse_rotate_b(a);
-			index_mid++;
-		}
-		ft_push_b(a);
-	}
-}
-
-void	display_instruct(t_env *a)
-{
-	printf("sa = %d\n", a->sa);
-	printf("sb = %d\n", a->sb);
-	printf("ss = %d\n", a->ss);
-	printf("pa = %d\n", a->pa);
-	printf("pb = %d\n", a->pb);
-	printf("ra = %d\n", a->ra);
-	printf("rb = %d\n", a->rb);
-	printf("rr = %d\n", a->rr);
-	printf("rra = %d\n", a->rra);
-	printf("rrb = %d\n", a->rrb);
-	printf("rrr = %d\n", a->rrr);
-	printf("TOTAL de %d instructions\n", a->sa + a->sb + a->ss + a->pa + a->pb + a->ra + a->rb + a->rr + a->rrr + a->rrb + a->rrr);
-}
-
-void	display(int *tab, int count, char c)
-{
-	int i;
+	int nb_max;
+	int	index_max;
+	int index_tmp;
 
 	i = 0;
-	ft_putstr("pile ");
-	ft_putchar(c);
-	ft_putstr("= ");
-	while (i < count)
+	index_max = pile_max - 1;
+	while (index_max >= 0)
 	{
-		ft_putnbr(tab[i]);
-		ft_putchar(' ');
+		while (a[i].index != -1)
+			i++;
+		nb_max = a[i].nb;
+		index_tmp = i;
+		while (i < pile_max)
+		{
+			if (a[i].nb > nb_max && a[i].index == -1)
+			{
+				nb_max = a[i].nb;
+				index_tmp = i;
+			}
+			i++;
+		}
+		a[index_tmp].index = index_max;
+		i = 0;
+		index_max--;
+	}
+}
+
+void	pile_fill_a(t_pile_a *a, char **argv)
+{
+	int		i;
+	int		k;
+	int		pile_max;
+	char 	**tab;
+
+	i = 1;
+	pile_max = 0;
+	tab = NULL;
+	while (argv[i])
+	{
+		k = 0;
+		tab = ft_strsplit(argv[i], ' ');
+		while (tab[k])
+		{
+			a[pile_max].nb = ft_atoi(tab[k]);
+			a[pile_max].index = -1;
+		//	printf("pile_max = %d, a[pile_max].nb = %d, a[pile_max].index = %d\n", pile_max, a[pile_max].nb, a[pile_max].index);
+			k++;
+			pile_max++;
+		}
+		free_tab(tab);
 		i++;
 	}
-	ft_putchar('\n');
+	pile_fill_a_index(a, pile_max);
+	i = 0;
+	while (i < pile_max)
+	{
+		printf("pile_max = %d, a[pile_max].nb = %d, a[pile_max].index = %d\n", i, a[i].nb, a[i].index);
+		i++;
+	}
+}
+
+t_pile_a		*pile_init_a(char **argv)
+{
+	t_pile_a 	*a;
+
+	a = ft_memalloc(sizeof(t_pile_a) * count_int_argv(argv));
+	if (!a)
+		return (NULL);
+	else
+	{
+		pile_fill_a(a, argv);
+		return (a);
+	}
+}
+
+t_pile_b		*pile_init_b(char **argv)
+{
+	t_pile_b 	*b;
+
+	b = ft_memalloc(sizeof(t_pile_b) * count_int_argv(argv));
+	if (!b)
+		return (NULL);
+	else
+		return (b);
 }
 
 void	ft_putstr_error(char const *s)
