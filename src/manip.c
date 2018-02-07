@@ -45,14 +45,17 @@ void	ft_swap_b(t_pile_b *b)
 	}
 	ft_putstr("sb\n");
 }
-/*
-void	ft_ss(t_struct *b)
+
+void	ft_ss(t_pile_a *a, t_pile_b *b)
 {
+	ft_swap_a(a);
+	ft_swap_b(b);
 	ft_putstr("ss\n");
 }
 
 void	ft_rotate_a(t_struct *b)
 {
+	
 	ft_putstr("ra\n");
 }
 

@@ -17,17 +17,20 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 
-typedef	struct  s_pile_a
+typedef	struct  s_pile
 {
 	int nb;
 	int index;
-}				t_pile_a;
+}				t_pile;
 
-typedef	struct  s_pile_b
+typedef	struct  s_env
 {
-	int nb;
-	int index;
-}				t_pile_b;
+	t_pile *pile_a;
+	t_pile *pile_b;
+	int 	size_a;
+	int		size_b;
+	int		size_max;
+}				t_env;
 
 t_pile_a	*pile_init_a(char **argv);
 t_pile_b	*pile_init_b(char **argv);
