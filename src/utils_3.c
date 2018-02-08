@@ -1,6 +1,6 @@
 #include "struct.h"
 
-void	pile_fill_a_index(t_pile_a *a, int pile_max)
+void	pile_fill_a_index(t_env *a)
 {
 	int i;
 	int nb_max;
@@ -8,29 +8,29 @@ void	pile_fill_a_index(t_pile_a *a, int pile_max)
 	int index_tmp;
 
 	i = 0;
-	index_max = pile_max - 1;
+	index_max = a->size_max - 1;
 	while (index_max >= 0)
 	{
-		while (a[i].index != -1)
+		while (a->pile_a[i].index != -1)
 			i++;
-		nb_max = a[i].nb;
+		nb_max = a->pile_a[i].nb;
 		index_tmp = i;
-		while (i < pile_max)
+		while (i < a->size_max)
 		{
-			if (a[i].nb > nb_max && a[i].index == -1)
+			if (a->pile_a[i].nb > nb_max && a->pile_a[i].index == -1)
 			{
-				nb_max = a[i].nb;
+				nb_max = a->pile_a[i].nb;
 				index_tmp = i;
 			}
 			i++;
 		}
-		a[index_tmp].index = index_max;
+		a->pile_a[index_tmp].index = index_max;
 		i = 0;
 		index_max--;
 	}
 }
 
-void	pile_fill_a(t_pile_a *a, char **argv)
+void	pile_fill_a(t_env *a, char **argv)
 {
 	int		i;
 	int		k;
@@ -46,8 +46,8 @@ void	pile_fill_a(t_pile_a *a, char **argv)
 		tab = ft_strsplit(argv[i], ' ');
 		while (tab[k])
 		{
-			a[pile_max].nb = ft_atoi(tab[k]);
-			a[pile_max].index = -1;
+			a->pile_a[pile_max].nb = ft_atoi(tab[k]);
+			a->pile_a[pile_max].index = -1;
 		//	printf("pile_max = %d, a[pile_max].nb = %d, a[pile_max].index = %d\n", pile_max, a[pile_max].nb, a[pile_max].index);
 			k++;
 			pile_max++;
@@ -55,25 +55,19 @@ void	pile_fill_a(t_pile_a *a, char **argv)
 		free_tab(tab);
 		i++;
 	}
-	pile_fill_a_index(a, pile_max);
-	i = 0;
-	while (i < pile_max)
-	{
-		printf("pile_max = %d, a[pile_max].nb = %d, a[pile_max].index = %d\n", i, a[i].nb, a[i].index);
-		i++;
-	}
+	pile_fill_a_index(a);
+	display(a);
 }
 
-t_env			*pile_init(void)
+t_env			*pile_init(char **argv)
 {
 	t_env *a;
-	int count;
 
-	count = count_int_argv(argv);
 	a = (t_env *)ft_memalloc(sizeof(t_env));
-	a->pile_a = (pile_a *)ft_memalloc(sizeof(pile_a) * count);
-	a->pile_b = (pile_b *)ft_memalloc(sizeof(pile_b) * count);
-
+	a->size_max = count_int_argv(argv);
+	a->size_a = a->size_max;
+	a->pile_a = (t_pile *)ft_memalloc(sizeof(t_pile) * a->size_max);
+	a->pile_b = (t_pile *)ft_memalloc(sizeof(t_pile) * a->size_max);
 	return (a);
 }
 

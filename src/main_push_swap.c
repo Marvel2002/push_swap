@@ -10,8 +10,8 @@ int		main(int argc, char **argv)
 		if (valid_tab(argv) && ft_test_duplicate(argv))
 		{
 			ft_putstr("OK\n");
-			a = pile_init(a);
-	//		sort_pile_a(a);
+			a = pile_init(argv);
+			pile_fill_a(a, argv);
 		//	display_instruct(a);
 		}
 		else
