@@ -57,6 +57,20 @@ void	pile_fill_a(t_env *a, char **argv)
 	}
 	pile_fill_a_index(a);
 	display(a);
+	i = 0;
+	while (i < a->size_max)
+	{
+		if (a->pile_a[0].index >= a->size_max / 4)
+		{
+			ft_push_b(a);
+			if (a->pile_b[0].index <= a->size_max / 2)
+				ft_rotate_b(a);
+		}
+		else
+			ft_rotate_a(a);
+		i++;
+	}
+	display(a);
 }
 
 t_env			*pile_init(char **argv)
