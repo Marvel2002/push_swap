@@ -56,8 +56,6 @@ void	find_and_place_next(t_env *a)
 	next = 1;
 	while (a->pile_a[0].index != 0 || a->size_b)
 	{
-		ft_putstr("mediane = ");
-		ft_putnbr_c(a->med, '\n');
 		if (next_is_in_b(a, next))
 		{
 			if (a->pile_b[0].index == next)
@@ -105,7 +103,6 @@ void	find_and_place_next(t_env *a)
 					ft_rotate_b(a);
 			}
 		}
-		display(a);
 	}
 }
 

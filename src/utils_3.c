@@ -28,7 +28,6 @@ void	pile_fill_a_index(t_env *a)
 		i = 0;
 		index_max--;
 	}
-	display(a);
 }
 
 void	pile_fill_a(t_env *a, char **argv)

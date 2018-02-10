@@ -9,11 +9,9 @@ int		main(int argc, char **argv)
 	{
 		if (valid_tab(argv) && ft_test_duplicate(argv))
 		{
-			ft_putstr("OK\n");
 			a = pile_init(argv);
 			pile_fill_a(a, argv);
 			find_and_place_zero(a);
-			display(a);
 		}
 		else
 			ft_putstr_error("Error\n");
