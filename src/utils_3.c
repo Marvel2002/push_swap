@@ -66,7 +66,7 @@ t_env			*pile_init(char **argv)
 	a = (t_env *)ft_memalloc(sizeof(t_env));
 	a->size_max = count_int_argv(argv);
 	a->size_a = a->size_max;
-	if (a->size_max >= 20)
+	if (a->size_max > 10)
 		a->med = a->size_max / 2;
 	else
 		a->med = 0;
