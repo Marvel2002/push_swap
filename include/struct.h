@@ -30,6 +30,7 @@ typedef	struct  s_env
 	int 	size_a;
 	int		size_b;
 	int		size_max;
+	int		med;
 }				t_env;
 
 t_env		*pile_init(char **argv);
@@ -51,5 +52,6 @@ int			valid_tab(char **argv);
 void		ft_putstr_error(char const *s);
 void		display(t_env *a);
 int			count_int_argv(char **argv);
+void		find_and_place_zero(t_env *a);
 
 #endif

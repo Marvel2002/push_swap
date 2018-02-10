@@ -12,7 +12,8 @@ int		main(int argc, char **argv)
 			ft_putstr("OK\n");
 			a = pile_init(argv);
 			pile_fill_a(a, argv);
-		//	display_instruct(a);
+			find_and_place_zero(a);
+			display(a);
 		}
 		else
 			ft_putstr_error("Error\n");

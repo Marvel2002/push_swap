@@ -28,6 +28,7 @@ void	pile_fill_a_index(t_env *a)
 		i = 0;
 		index_max--;
 	}
+	display(a);
 }
 
 void	pile_fill_a(t_env *a, char **argv)
@@ -56,21 +57,6 @@ void	pile_fill_a(t_env *a, char **argv)
 		i++;
 	}
 	pile_fill_a_index(a);
-	display(a);
-	i = 0;
-	while (i < a->size_max)
-	{
-		if (a->pile_a[0].index >= a->size_max / 4)
-		{
-			ft_push_b(a);
-			if (a->pile_b[0].index <= a->size_max / 2)
-				ft_rotate_b(a);
-		}
-		else
-			ft_rotate_a(a);
-		i++;
-	}
-	display(a);
 }
 
 t_env			*pile_init(char **argv)
@@ -80,6 +66,10 @@ t_env			*pile_init(char **argv)
 	a = (t_env *)ft_memalloc(sizeof(t_env));
 	a->size_max = count_int_argv(argv);
 	a->size_a = a->size_max;
+	if (a->size_max >= 20)
+		a->med = a->size_max / 2;
+	else
+		a->med = 0;
 	a->pile_a = (t_pile *)ft_memalloc(sizeof(t_pile) * a->size_max);
 	a->pile_b = (t_pile *)ft_memalloc(sizeof(t_pile) * a->size_max);
 	return (a);

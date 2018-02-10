@@ -1,5 +1,46 @@
 #include "struct.h"
 
+int		pos_zero(t_env *a)
+{
+	int i;
+
+	i = 0;
+	while (a->pile_a[i].index != 0)
+		i++;
+	return (i);
+}
+
+void	iter_to_zero(t_env *a)
+{
+	if (pos_zero(a) < a->size_a / 2)
+		ft_push_b(a);
+	else
+	{
+		ft_reverse_rotate_a(a);
+		ft_push_b(a);
+	}
+	if (a->size_b > 1 && a->med && a->pile_b[0].index > a->med)
+		ft_rotate_b(a);
+}
+
+void	find_and_place_zero(t_env *a)
+{
+	while (a->pile_a[a->size_a - 1].index != 0)
+	{
+		if (a->pile_a[1].index == 0)
+		{
+			ft_swap_a(a);
+			ft_rotate_a(a);
+		}
+		else if (a->pile_a[0].index == 0)
+			ft_rotate_a(a);
+		else if (a->pile_a[a->size_a - 2].index == 0)
+			ft_reverse_rotate_a(a);
+		else
+			iter_to_zero(a);
+	}
+}
+
 /*void	sort_pile_b(t_env *a)
 {
 	int i;
