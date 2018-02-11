@@ -33,6 +33,8 @@ typedef	struct  s_env
 	int		med;
 }				t_env;
 
+typedef void	(t_func_instruc)(t_env *a);
+
 t_env		*pile_init(char **argv);
 void		pile_fill_a(t_env *a, char **argv);
 int			ft_test_duplicate(char **argv);
