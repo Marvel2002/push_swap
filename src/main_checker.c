@@ -2,13 +2,13 @@
 
 void	read_stdin()
 {
-	char buf[3];
+	char buf[4];
 
-	ft_bzero(buf, 3);
-	while (read(0, buf, sizeof(buf)) != -1)
+	ft_bzero(buf, 4);
+	while (read(0, buf, 4) != -1)
 	{
 		ft_putstr(buf);
-		ft_bzero(buf, 3);
+		ft_bzero(buf, 4);
 	}
 }
 
