@@ -48,7 +48,6 @@ void	pile_fill_a(t_env *a, char **argv)
 		{
 			a->pile_a[pile_max].nb = ft_atoi(tab[k]);
 			a->pile_a[pile_max].index = -1;
-		//	printf("pile_max = %d, a[pile_max].nb = %d, a[pile_max].index = %d\n", pile_max, a[pile_max].nb, a[pile_max].index);
 			k++;
 			pile_max++;
 		}
@@ -74,44 +73,6 @@ t_env			*pile_init(char **argv)
 	return (a);
 }
 
-/*t_pile_a		*pile_init_a(char **argv)
-{
-	t_pile_a 	*a;
-	int 		count;
-
-	count = count_int_argv(argv);
-	a = ft_memalloc(sizeof(t_pile_a) * count);
-	if (!a)
-		return (NULL);
-	else
-	{
-		pile_fill_a(a, argv);
-		return (a);
-	}
-}
-
-t_pile_b		*pile_init_b(char **argv)
-{
-	t_pile_b 	*b;
-	int			count;
-	int			i;
-
-	i = 0;
-	count = count_int_argv(argv);
-	b = ft_memalloc(sizeof(t_pile_b) * count);
-	if (!b)
-		return (NULL);
-	else
-	{
-		while (i < count)
-		{
-			b[i].index = -1;
-			i++;
-		}
-		return (b);
-	}
-}
-*/
 void	ft_putstr_error(char const *s)
 {
 	if (!s)

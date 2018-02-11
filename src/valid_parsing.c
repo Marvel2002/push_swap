@@ -10,12 +10,39 @@ int		valid_char(char nb, char nb_plus)
 		return (0);
 }
 
+int		ft_longtoi(const char *str)
+{
+	long i;
+	int negativ;
+	long nb;
+
+	i = 0;
+	negativ = 0;
+	nb = 0;
+	if (str[i] == '-')
+	{
+		negativ = 1;
+		i++;
+	}
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		nb *= 10;
+		nb += str[i] - '0';
+		if ((nb > 2147483647 && !negativ) || (nb > 2147483648 && negativ))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int		ft_compare_one_tab(char **tab)
 {
 	int i;
 	int j;
 
 	i = 0;
+	if (!ft_longtoi(tab[i]))
+		return (0);
 	while (tab[i])
 	{
 		j = i + 1;
@@ -111,3 +138,5 @@ int		valid_tab(char **argv)
 	}
 	return (1);
 }
+
+
