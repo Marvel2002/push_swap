@@ -13,7 +13,7 @@
 NAME = push_swap
 NAME_2 = checker
 CC = gcc
-INCLUDE = -Ilibft -Iinclude
+INCLUDE = -Ilibft -Iinclude -fsanitize=address
 CFLAGS = -Wall -Werror -Wextra $(INCLUDE)
 SRC_PS = src/main_push_swap.c src/manip.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils_1.c src/utils_3.c
 SRC_CK = src/main_checker.c src/manip.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils_1.c src/utils_3.c
