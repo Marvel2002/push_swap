@@ -65,8 +65,8 @@ t_env			*pile_init(char **argv)
 	a = (t_env *)ft_memalloc(sizeof(t_env));
 	a->size_max = count_int_argv(argv);
 	a->size_a = a->size_max;
-	if (a->size_max > 10)
-		a->med = a->size_max / 2;
+	if (a->size_max > 11)
+		a->med = a->size_max / 8;
 	else
 		a->med = 0;
 	a->pile_a = (t_pile *)ft_memalloc(sizeof(t_pile) * a->size_max);
@@ -118,7 +118,7 @@ void	ft_putstr_error(char const *s)
 		return ;
 	while (*s)
 	{
-		write(0, &*s, 1);
+		write(2, &*s, 1);
 		s++;
 	}
 }
