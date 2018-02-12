@@ -123,7 +123,6 @@ int		ft_test_duplicate(char **argv, int bonus)
 	return (1);
 }
 
-
 int		valid_tab(char **argv, int bonus)
 {
 	int i;

@@ -15,6 +15,7 @@
 # define STRUCT_H
 
 # include "../libft/libft.h"
+# define YEL   "\x1B[33m"
 
 typedef	struct	s_pile
 {

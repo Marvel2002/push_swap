@@ -14,8 +14,8 @@
 
 int		main(int argc, char **argv)
 {
-	t_env *a;
-	int bonus;
+	t_env	*a;
+	int		bonus;
 
 	a = NULL;
 	bonus = 0;

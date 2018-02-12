@@ -14,12 +14,13 @@
 
 int		parse_instruct(char *buf, t_env *a)
 {
-	int						index;
-	const static char		*instruction[] = {"sa", "sb", "ra", "rb",
+	int								index;
+	const static char				*instruction[] = {"sa", "sb", "ra", "rb",
 	"rra", "rrb", "pa", "pb", "ss", "rr", "rrr", NULL};
 	static t_func_instruc			*func_exec[] = {
-		&ft_swap_a, &ft_swap_b, &ft_rotate_a, &ft_rotate_b, &ft_reverse_rotate_a,
-		&ft_reverse_rotate_b, &ft_push_a, &ft_push_b, &ft_ss, &ft_rr, &ft_rrr,
+		&ft_swap_a, &ft_swap_b, &ft_rotate_a, &ft_rotate_b,
+		&ft_reverse_rotate_a, &ft_reverse_rotate_b, &ft_push_a,
+		&ft_push_b, &ft_ss, &ft_rr, &ft_rrr,
 	};
 
 	index = 0;
@@ -36,8 +37,9 @@ int		parse_instruct(char *buf, t_env *a)
 
 void	read_stdin(t_env *a)
 {
-	char *buf = NULL;
+	char *buf;
 
+	buf = NULL;
 	while (get_next_line(0, &buf) > 0)
 	{
 		if (!parse_instruct(buf, a))
@@ -52,12 +54,11 @@ void	read_stdin(t_env *a)
 	else
 		ft_putstr("KO\n");
 }
-	
 
 int		main(int argc, char **argv)
 {
-	t_env *a;
-	int	bonus;
+	t_env	*a;
+	int		bonus;
 
 	a = NULL;
 	bonus = 0;

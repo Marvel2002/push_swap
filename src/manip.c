@@ -27,7 +27,15 @@ void	ft_swap_a(t_env *a)
 		a->pile_a[1].index = index_tmp;
 	}
 	if (a->push_swap)
-		ft_putstr("sa\n");
+	{
+		if (a->color && pile_is_sort(a) && a->size_b == 0)
+		{
+			ft_putstr(YEL);
+			ft_putstr("sa\n");
+		}
+		else
+			ft_putstr("sa\n");
+	}
 	if (a->display)
 		display(a);
 }
@@ -62,6 +70,17 @@ void	ft_ss(t_env *a)
 		display(a);
 }
 
+void	print_ra(t_env *a)
+{
+	if (a->color && pile_is_sort(a) && a->size_b == 0)
+	{
+		ft_putstr(YEL);
+		ft_putstr("ra\n");
+	}
+	else
+		ft_putstr("ra\n");
+}
+
 void	ft_rotate_a(t_env *a)
 {
 	int i;
@@ -80,7 +99,7 @@ void	ft_rotate_a(t_env *a)
 	a->pile_a[i].nb = nb_tmp;
 	a->pile_a[i].index = index_tmp;
 	if (a->push_swap)
-		ft_putstr("ra\n");
+		print_ra(a);
 	if (a->display)
 		display(a);
 }
@@ -118,6 +137,17 @@ void	ft_rr(t_env *a)
 		display(a);
 }
 
+void	print_rra(t_env *a)
+{
+	if (a->color && pile_is_sort(a) && a->size_b == 0)
+	{
+		ft_putstr(YEL);
+		ft_putstr("rra\n");
+	}
+	else
+		ft_putstr("rra\n");
+}
+
 void	ft_reverse_rotate_a(t_env *a)
 {
 	int i;
@@ -136,7 +166,7 @@ void	ft_reverse_rotate_a(t_env *a)
 	a->pile_a[i].nb = nb_tmp;
 	a->pile_a[i].index = index_tmp;
 	if (a->push_swap)
-		ft_putstr("rra\n");
+		print_rra(a);
 	if (a->display)
 		display(a);
 }
@@ -175,6 +205,18 @@ void	ft_rrr(t_env *a)
 		display(a);
 }
 
+void	raise_a_down_b(t_env *a)
+{
+	a->size_a++;
+	a->size_b--;
+}
+
+void	raise_b_down_a(t_env *a)
+{
+	a->size_a--;
+	a->size_b++;
+}
+
 void	ft_push_a(t_env *a)
 {
 	int i;
@@ -190,8 +232,7 @@ void	ft_push_a(t_env *a)
 		}
 		a->pile_a[i].nb = a->pile_b[0].nb;
 		a->pile_a[i].index = a->pile_b[0].index;
-		a->size_a++;
-		a->size_b--;
+		raise_a_down_b(a);
 		while (i < a->size_b)
 		{
 			a->pile_b[i].nb = a->pile_b[i + 1].nb;
@@ -220,8 +261,7 @@ void	ft_push_b(t_env *a)
 		}
 		a->pile_b[i].nb = a->pile_a[0].nb;
 		a->pile_b[i].index = a->pile_a[0].index;
-		a->size_a--;
-		a->size_b++;
+		raise_b_down_a(a);
 		while (i < a->size_a)
 		{
 			a->pile_a[i].nb = a->pile_a[i + 1].nb;
