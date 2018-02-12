@@ -31,6 +31,8 @@ typedef	struct  s_env
 	int		size_b;
 	int		size_max;
 	int		med;
+	int		push_swap;
+	int		checker;
 }				t_env;
 
 typedef void	(t_func_instruc)(t_env *a);

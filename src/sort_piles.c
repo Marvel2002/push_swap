@@ -44,10 +44,10 @@ int		pile_is_sort(t_env *a)
 	{
 		if (a->pile_a[i].index == i)
 			i++;
+		else
+			return (0);
 	}
-	if (i == a->size_a)
-		return (1);
-	return (0);
+	return (1);
 }
 
 int		next_is_in_b(t_env *a, int next)

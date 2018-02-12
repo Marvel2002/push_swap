@@ -22,6 +22,7 @@ int		main(int argc, char **argv)
 		if (valid_tab(argv) && ft_test_duplicate(argv))
 		{
 			a = pile_init(argv);
+			a->push_swap = 1;
 			pile_fill_a(a, argv);
 			find_and_place_zero(a);
 		}
