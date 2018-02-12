@@ -45,26 +45,25 @@ int		parse_instruct(char *buf, t_env *a)
 void	read_stdin(t_env *a)
 {
 	char buf[5];
+	int i;
 
+	i = 0;
 	ft_bzero(buf, sizeof(buf));
-	while (read(0, buf, sizeof(buf)) != -1)
+	while ((i = read(0, buf, sizeof(buf))))
 	{
+		ft_putnbr(i);
 		if (parse_instruct(buf, a))
 			ft_bzero(buf, sizeof(buf));
-		else if (!parse_instruct(buf, a))
+		else
 		{
-			if (pile_is_sort(a) && a->size_b == 0)
-			{
-				ft_putstr("OK\n");
-				break ;
-			}
-			else
-			{
-				ft_putstr("KO\n");
-				break ;
-			}
+			ft_putstr_error("Error\n");
+			break ;
 		}
 	}
+	if (pile_is_sort(a) && a->size_b == 0)
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
 }
 
 int		main(int argc, char **argv)
@@ -79,7 +78,6 @@ int		main(int argc, char **argv)
 			a = pile_init(argv);
 			pile_fill_a(a, argv);
 			read_stdin(a);
-			ft_putstr("LOL");
 		}
 		else
 			ft_putstr_error("Error\n");
