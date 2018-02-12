@@ -55,5 +55,6 @@ void		ft_putstr_error(char const *s);
 void		display(t_env *a);
 int			count_int_argv(char **argv);
 void		find_and_place_zero(t_env *a);
+int			pile_is_sort(t_env *a);
 
 #endif
