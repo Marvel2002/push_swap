@@ -98,3 +98,13 @@ void			ft_putstr_error(char const *s)
 		s++;
 	}
 }
+
+int				valid_char(char nb, char nb_plus)
+{
+	if (ft_isdigit(nb) && !(nb_plus == '-'))
+		return (1);
+	else if (nb == '-' && ft_isdigit(nb_plus))
+		return (1);
+	else
+		return (0);
+}
