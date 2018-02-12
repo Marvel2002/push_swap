@@ -93,32 +93,29 @@ int		ft_compare_tabs(char **tab_1, char **tab_2)
 
 int		ft_test_duplicate(char **argv, int bonus)
 {
-	int		i;
-	int		j;
-	char	**tab_1;
-	char	**tab_2;
+	t_te	temp;
 
-	i = (bonus) ? 2 : 1;
-	while (argv[i])
+	temp.i = (bonus) ? 2 : 1;
+	while (argv[temp.i])
 	{
-		tab_1 = ft_strsplit(argv[i], ' ');
-		if (ft_compare_one_tab(tab_1))
+		temp.tab_1 = ft_strsplit(argv[temp.i], ' ');
+		if (ft_compare_one_tab(temp.tab_1))
 		{
-			j = i + 1;
-			while (argv[j])
+			temp.j = temp.i + 1;
+			while (argv[temp.j])
 			{
-				tab_2 = ft_strsplit(argv[j], ' ');
-				if (ft_compare_tabs(tab_1, tab_2))
-					j++;
+				temp.tab_2 = ft_strsplit(argv[temp.j], ' ');
+				if (ft_compare_tabs(temp.tab_1, temp.tab_2))
+					temp.j++;
 				else
 					return (0);
-				free_tab(tab_2);
+				free_tab(temp.tab_2);
 			}
 		}
 		else
 			return (0);
-		i++;
-		free_tab(tab_1);
+		temp.i++;
+		free_tab(temp.tab_1);
 	}
 	return (1);
 }

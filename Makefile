@@ -15,8 +15,8 @@ NAME_2 = checker
 CC = gcc
 INCLUDE = -Ilibft -Iinclude -fsanitize=address
 CFLAGS = -Wall -Werror -Wextra $(INCLUDE)
-SRC_PS = src/main_push_swap.c src/manip.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils_1.c src/pile_init.c
-SRC_CK = src/main_checker.c src/manip.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils_1.c src/pile_init.c
+SRC_PS = src/main_push_swap.c src/manip_1.c src/manip_2.c src/manip_3.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils.c src/pile_init.c
+SRC_CK = src/main_checker.c src/manip_1.c src/manip_2.c src/manip_3.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils.c src/pile_init.c
 LIB_PATH = ./libft/
 LIB_BIN = $(LIB_PATH)libft.a
 SRC_PATH = ./src/
