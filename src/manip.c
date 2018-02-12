@@ -28,6 +28,8 @@ void	ft_swap_a(t_env *a)
 	}
 	if (a->push_swap)
 		ft_putstr("sa\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_swap_b(t_env *a)
@@ -46,6 +48,8 @@ void	ft_swap_b(t_env *a)
 	}
 	if (a->push_swap)
 		ft_putstr("sb\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_ss(t_env *a)
@@ -54,6 +58,8 @@ void	ft_ss(t_env *a)
 	ft_swap_b(a);
 	if (a->push_swap)
 		ft_putstr("ss\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_rotate_a(t_env *a)
@@ -75,6 +81,8 @@ void	ft_rotate_a(t_env *a)
 	a->pile_a[i].index = index_tmp;
 	if (a->push_swap)
 		ft_putstr("ra\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_rotate_b(t_env *a)
@@ -96,6 +104,8 @@ void	ft_rotate_b(t_env *a)
 	a->pile_b[i].index = index_tmp;
 	if (a->push_swap)
 		ft_putstr("rb\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_rr(t_env *a)
@@ -104,6 +114,8 @@ void	ft_rr(t_env *a)
 	ft_rotate_b(a);
 	if (a->push_swap)
 		ft_putstr("rr\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_reverse_rotate_a(t_env *a)
@@ -125,6 +137,8 @@ void	ft_reverse_rotate_a(t_env *a)
 	a->pile_a[i].index = index_tmp;
 	if (a->push_swap)
 		ft_putstr("rra\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_reverse_rotate_b(t_env *a)
@@ -157,6 +171,8 @@ void	ft_rrr(t_env *a)
 	ft_reverse_rotate_b(a);
 	if (a->push_swap)
 		ft_putstr("rrr\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_push_a(t_env *a)
@@ -185,6 +201,8 @@ void	ft_push_a(t_env *a)
 	}
 	if (a->push_swap)
 		ft_putstr("pa\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_push_b(t_env *a)
@@ -213,4 +231,6 @@ void	ft_push_b(t_env *a)
 	}
 	if (a->push_swap)
 		ft_putstr("pb\n");
+	if (a->display)
+		display(a);
 }

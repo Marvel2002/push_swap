@@ -35,14 +35,14 @@ void		free_tab(char **tab)
 	free(tab);
 }
 
-int			count_int_argv(char **argv)
+int			count_int_argv(char **argv, int bonus)
 {
 	int		nb;
 	char	**tab;
 	int		i;
 
 	nb = 0;
-	i = 1;
+	i = (bonus) ? 2 : 1;
 	tab = NULL;
 	while (argv[i])
 	{

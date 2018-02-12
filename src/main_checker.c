@@ -14,21 +14,12 @@
 
 int		parse_instruct(char *buf, t_env *a)
 {
-	const static char		*instruction[] = {"sa\n", "sb\n", "ra\n", "rb\n", "rra\n", "rrb\n", "pa\n", "pb\n", "ss\n", "rr\n", "rrr\n", NULL};
 	int						index;
-	t_func_instruc			*func_exec[] =
-	{
-		&ft_swap_a,
-		&ft_swap_b,
-		&ft_rotate_a,
-		&ft_rotate_b,
-		&ft_reverse_rotate_a,
-		&ft_reverse_rotate_b,
-		&ft_push_a,
-		&ft_push_b,
-		&ft_ss,
-		&ft_rr,
-		&ft_rrr,
+	const static char		*instruction[] = {"sa", "sb", "ra", "rb",
+	"rra", "rrb", "pa", "pb", "ss", "rr", "rrr", NULL};
+	static t_func_instruc			*func_exec[] = {
+		&ft_swap_a, &ft_swap_b, &ft_rotate_a, &ft_rotate_b, &ft_reverse_rotate_a,
+		&ft_reverse_rotate_b, &ft_push_a, &ft_push_b, &ft_ss, &ft_rr, &ft_rrr,
 	};
 
 	index = 0;
@@ -45,24 +36,13 @@ int		parse_instruct(char *buf, t_env *a)
 
 void	read_stdin(t_env *a)
 {
-	char buf[5];
-	int i;
+	char *buf = NULL;
 
-	i = 0;
-	ft_bzero(buf, sizeof(buf));
-	while ((i = read(0, buf, sizeof(buf))))
+	while (get_next_line(0, &buf) > 0)
 	{
-		ft_putnbr(i);
-		if (parse_instruct(buf, a))
-		{
-			ft_bzero(buf, sizeof(buf));
-			if (a->display)
-				display(a);
-		}
-		else
+		if (!parse_instruct(buf, a))
 		{
 			ft_putstr_error("Error\n");
-			ft_putnbr(i);
 			ft_free(a);
 			exit(1);
 		}
@@ -89,7 +69,7 @@ int		main(int argc, char **argv)
 			bonus = 2;
 		if (valid_tab(argv, bonus) && ft_test_duplicate(argv, bonus))
 		{
-			a = pile_init(argv);
+			a = pile_init(argv, bonus);
 			pile_fill_a(a, argv);
 			read_stdin(a);
 			ft_free(a);

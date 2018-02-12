@@ -34,12 +34,12 @@ typedef	struct	s_env
 	int			checker;
 	int			next;
 	int			i;
-	int			display;
 	int			color;
+	int			display;
 }				t_env;
 
 typedef void	(t_func_instruc)(t_env *a);
-t_env			*pile_init(char **argv);
+t_env			*pile_init(char **argv, int bonus);
 void			pile_fill_a(t_env *a, char **argv);
 int				ft_test_duplicate(char **argv, int bonus);
 void			ft_swap_a(t_env *a);
@@ -57,7 +57,7 @@ void			free_tab(char **tab);
 int				valid_tab(char **argv, int bonus);
 void			ft_putstr_error(char const *s);
 void			display(t_env *a);
-int				count_int_argv(char **argv);
+int				count_int_argv(char **argv, int bonus);
 void			find_and_place_zero(t_env *a);
 int				pile_is_sort(t_env *a);
 void			ft_free(t_env *a);

@@ -98,11 +98,7 @@ int		ft_test_duplicate(char **argv, int bonus)
 	char	**tab_1;
 	char	**tab_2;
 
-	i = 1;
-	if (bonus)
-		i = 2;
-	tab_1 = NULL;
-	tab_2 = NULL;
+	i = (bonus) ? 2 : 1;
 	while (argv[i])
 	{
 		tab_1 = ft_strsplit(argv[i], ' ');
@@ -133,9 +129,7 @@ int		valid_tab(char **argv, int bonus)
 	int i;
 	int j;
 
-	i = 1;
-	if (bonus)
-		i = 2;
+	i = (bonus) ? 2 : 1;
 	while (argv[i])
 	{
 		if (ft_strcmp(argv[i], "") == 0)

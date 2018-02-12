@@ -21,9 +21,13 @@ int		main(int argc, char **argv)
 	bonus = 0;
 	if (argc > 1)
 	{
+		if ((ft_strcmp(argv[1], "-v")) == 0)
+			bonus = 1;
+		else if ((ft_strcmp(argv[1], "-c")) == 0)
+			bonus = 2;
 		if (valid_tab(argv, bonus) && ft_test_duplicate(argv, bonus))
 		{
-			a = pile_init(argv);
+			a = pile_init(argv, bonus);
 			a->push_swap = 1;
 			pile_fill_a(a, argv);
 			find_and_place_zero(a);
