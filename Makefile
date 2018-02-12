@@ -6,14 +6,14 @@
 #    By: mmatime <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/22 12:53:47 by mmatime           #+#    #+#              #
-#    Updated: 2018/02/02 12:19:17 by mmatime          ###   ########.fr        #
+#    Updated: 2018/02/12 20:27:01 by mmatime          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 NAME_2 = checker
 CC = gcc
-INCLUDE = -Ilibft -Iinclude -fsanitize=address
+INCLUDE = -Ilibft -Iinclude
 CFLAGS = -Wall -Werror -Wextra $(INCLUDE)
 SRC_PS = src/main_push_swap.c src/manip_1.c src/manip_2.c src/manip_3.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils.c src/pile_init.c
 SRC_CK = src/main_checker.c src/manip_1.c src/manip_2.c src/manip_3.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils.c src/pile_init.c
