@@ -57,7 +57,7 @@ void	read_stdin(t_env *a)
 		else
 		{
 			ft_putstr_error("Error\n");
-			break ;
+			exit (1);
 		}
 	}
 	if (pile_is_sort(a) && a->size_b == 0)
