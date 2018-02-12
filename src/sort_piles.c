@@ -40,7 +40,7 @@ int		pile_is_sort(t_env *a)
 	int i;
 
 	i = 0;
-	while (a->pile_a[i].index == i)
+	while (a->pile_a[i].index == i && i < a->size_a)
 		i++;
 	if (i == a->size_a)
 		return (1);
