@@ -15,20 +15,22 @@
 int		main(int argc, char **argv)
 {
 	t_env *a;
+	int bonus;
 
 	a = NULL;
+	bonus = 0;
 	if (argc > 1)
 	{
-		if (valid_tab(argv) && ft_test_duplicate(argv))
+		if (valid_tab(argv, bonus) && ft_test_duplicate(argv, bonus))
 		{
 			a = pile_init(argv);
 			a->push_swap = 1;
 			pile_fill_a(a, argv);
 			find_and_place_zero(a);
+			ft_free(a);
 		}
 		else
 			ft_putstr_error("Error\n");
 	}
-
 	return (0);
 }

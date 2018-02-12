@@ -24,9 +24,9 @@ int		valid_char(char nb, char nb_plus)
 
 int		ft_longtoi(const char *str)
 {
-	long i;
-	int negativ;
-	long nb;
+	long	i;
+	int		negativ;
+	long	nb;
 
 	i = 0;
 	negativ = 0;
@@ -91,14 +91,16 @@ int		ft_compare_tabs(char **tab_1, char **tab_2)
 	return (1);
 }
 
-int		ft_test_duplicate(char **argv)
+int		ft_test_duplicate(char **argv, int bonus)
 {
-	int i;
-	int j;
-	char **tab_1;
-	char **tab_2;
+	int		i;
+	int		j;
+	char	**tab_1;
+	char	**tab_2;
 
 	i = 1;
+	if (bonus)
+		i = 2;
 	tab_1 = NULL;
 	tab_2 = NULL;
 	while (argv[i])
@@ -126,12 +128,14 @@ int		ft_test_duplicate(char **argv)
 }
 
 
-int		valid_tab(char **argv)
+int		valid_tab(char **argv, int bonus)
 {
 	int i;
 	int j;
 
 	i = 1;
+	if (bonus)
+		i = 2;
 	while (argv[i])
 	{
 		if (ft_strcmp(argv[i], "") == 0)
@@ -150,5 +154,3 @@ int		valid_tab(char **argv)
 	}
 	return (1);
 }
-
-

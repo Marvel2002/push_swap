@@ -15,7 +15,7 @@
 int			count_int_tab(char **tab)
 {
 	int i;
-	
+
 	i = 0;
 	while (tab[i])
 		i++;
@@ -37,9 +37,9 @@ void		free_tab(char **tab)
 
 int			count_int_argv(char **argv)
 {
-	int nb;
-	char **tab;
-	int i;
+	int		nb;
+	char	**tab;
+	int		i;
 
 	nb = 0;
 	i = 1;

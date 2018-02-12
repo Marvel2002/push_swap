@@ -182,8 +182,6 @@ void	ft_push_a(t_env *a)
 			a->pile_b[i].index = a->pile_b[i + 1].index;
 			i++;
 		}
-		a->pile_b[i].nb = -1;
-		a->pile_b[i].index = -1;
 	}
 	if (a->push_swap)
 		ft_putstr("pa\n");
@@ -212,8 +210,6 @@ void	ft_push_b(t_env *a)
 			a->pile_a[i].index = a->pile_a[i + 1].index;
 			i++;
 		}
-		a->pile_a[i].nb = -1;
-		a->pile_a[i].index = -1;
 	}
 	if (a->push_swap)
 		ft_putstr("pb\n");

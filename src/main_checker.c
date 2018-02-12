@@ -18,18 +18,19 @@ int		parse_instruct(char *buf, t_env *a)
 	int						index;
 	t_func_instruc			*func_exec[] =
 	{
-	 	&ft_swap_a,
-	 	&ft_swap_b,
-	 	&ft_rotate_a,
-	 	&ft_rotate_b,
-	 	&ft_reverse_rotate_a,
-	 	&ft_reverse_rotate_b,
-	 	&ft_push_a,
-	 	&ft_push_b,
-	 	&ft_ss,
-	 	&ft_rr,
-	 	&ft_rrr,
+		&ft_swap_a,
+		&ft_swap_b,
+		&ft_rotate_a,
+		&ft_rotate_b,
+		&ft_reverse_rotate_a,
+		&ft_reverse_rotate_b,
+		&ft_push_a,
+		&ft_push_b,
+		&ft_ss,
+		&ft_rr,
+		&ft_rrr,
 	};
+
 	index = 0;
 	while (instruction[index])
 		if (ft_strcmp(instruction[index], buf) == 0)
@@ -42,25 +43,26 @@ int		parse_instruct(char *buf, t_env *a)
 	return (0);
 }
 
-void	ft_free(t_env *a)
-{
-	free(a->pile_a);
-	free(a->pile_b);
-	free(a);
-}
-
 void	read_stdin(t_env *a)
 {
 	char buf[5];
+	int i;
 
+	i = 0;
 	ft_bzero(buf, sizeof(buf));
-	while ((read(0, buf, sizeof(buf))))
+	while ((i = read(0, buf, sizeof(buf))))
 	{
+		ft_putnbr(i);
 		if (parse_instruct(buf, a))
+		{
 			ft_bzero(buf, sizeof(buf));
+			if (a->display)
+				display(a);
+		}
 		else
 		{
 			ft_putstr_error("Error\n");
+			ft_putnbr(i);
 			ft_free(a);
 			exit(1);
 		}
@@ -70,15 +72,22 @@ void	read_stdin(t_env *a)
 	else
 		ft_putstr("KO\n");
 }
+	
 
 int		main(int argc, char **argv)
 {
 	t_env *a;
+	int	bonus;
 
 	a = NULL;
+	bonus = 0;
 	if (argc > 1)
 	{
-		if (valid_tab(argv) && ft_test_duplicate(argv))
+		if ((ft_strcmp(argv[1], "-v")) == 0)
+			bonus = 1;
+		else if ((ft_strcmp(argv[1], "-c")) == 0)
+			bonus = 2;
+		if (valid_tab(argv, bonus) && ft_test_duplicate(argv, bonus))
 		{
 			a = pile_init(argv);
 			pile_fill_a(a, argv);

@@ -15,14 +15,16 @@ NAME_2 = checker
 CC = gcc
 INCLUDE = -Ilibft -Iinclude -fsanitize=address
 CFLAGS = -Wall -Werror -Wextra $(INCLUDE)
-SRC_PS = src/main_push_swap.c src/manip.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils_1.c src/utils_3.c
-SRC_CK = src/main_checker.c src/manip.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils_1.c src/utils_3.c
+SRC_PS = src/main_push_swap.c src/manip.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils_1.c src/pile_init.c
+SRC_CK = src/main_checker.c src/manip.c src/sort_piles.c src/valid_parsing.c src/pile_fill_a.c src/utils_1.c src/pile_init.c
 LIB_PATH = ./libft/
 LIB_BIN = $(LIB_PATH)libft.a
 SRC_PATH = ./src/
 
 OBJ_SRC_PS = $(SRC_PS:.c=.o)
 OBJ_SRC_CK = $(SRC_CK:.c=.o)
+
+all: $(NAME) $(NAME_2)
 
 $(NAME): $(OBJ_SRC_PS)
 	make -C $(LIB_PATH)
@@ -31,8 +33,6 @@ $(NAME): $(OBJ_SRC_PS)
 $(NAME_2): $(OBJ_SRC_CK)
 	make -C $(LIB_PATH)
 	$(CC) -o $(NAME_2) $(SRC_CK) $(INCLUDE) $(CFLAGS) $(LIB_BIN)
-
-all: $(NAME) $(NAME_2)
 
 clean:
 	make -C $(LIB_PATH) clean

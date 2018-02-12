@@ -1,53 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_3.c                                          :+:      :+:    :+:   */
+/*   pile_init.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmatime <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/12 10:39:56 by mmatime           #+#    #+#             */
-/*   Updated: 2018/02/12 10:39:58 by mmatime          ###   ########.fr       */
+/*   Created: 2018/02/12 15:48:11 by mmatime           #+#    #+#             */
+/*   Updated: 2018/02/12 15:48:12 by mmatime          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "struct.h"
 
-void	pile_fill_a_index(t_env *a)
+void			pile_fill_a_index(t_env *a)
 {
-	int i;
 	int nb_max;
 	int	index_max;
 	int index_tmp;
 
-	i = 0;
+	a->i = 0;
 	index_max = a->size_max - 1;
 	while (index_max >= 0)
 	{
-		while (a->pile_a[i].index != -1)
-			i++;
-		nb_max = a->pile_a[i].nb;
-		index_tmp = i;
-		while (i < a->size_max)
+		while (a->pile_a[a->i].index != -1)
+			a->i++;
+		nb_max = a->pile_a[a->i].nb;
+		index_tmp = a->i;
+		while (a->i < a->size_max)
 		{
-			if (a->pile_a[i].nb > nb_max && a->pile_a[i].index == -1)
+			if (a->pile_a[a->i].nb > nb_max && a->pile_a[a->i].index == -1)
 			{
-				nb_max = a->pile_a[i].nb;
-				index_tmp = i;
+				nb_max = a->pile_a[a->i].nb;
+				index_tmp = a->i;
 			}
-			i++;
+			a->i++;
 		}
 		a->pile_a[index_tmp].index = index_max;
-		i = 0;
+		a->i = 0;
 		index_max--;
 	}
 }
 
-void	pile_fill_a(t_env *a, char **argv)
+void			pile_fill_a(t_env *a, char **argv)
 {
 	int		i;
 	int		k;
 	int		pile_max;
-	char 	**tab;
+	char	**tab;
 
 	i = 1;
 	pile_max = 0;
@@ -85,7 +84,7 @@ t_env			*pile_init(char **argv)
 	return (a);
 }
 
-void	ft_putstr_error(char const *s)
+void			ft_putstr_error(char const *s)
 {
 	if (!s)
 		return ;
