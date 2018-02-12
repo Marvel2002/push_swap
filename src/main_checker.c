@@ -51,12 +51,18 @@ void	read_stdin(t_env *a)
 	{
 		if (parse_instruct(buf, a))
 			ft_bzero(buf, sizeof(buf));
-		else if (!parse_instruct(buf, a) && pile_is_sort(a) && a->size_b == 0)
-			ft_putstr("OK\n");
-		else
+		else if (!parse_instruct(buf, a))
 		{
-			ft_putstr_error("Error\n");
-			break ;
+			if (pile_is_sort(a) && a->size_b == 0)
+			{
+				ft_putstr("OK\n");
+				break ;
+			}
+			else
+			{
+				ft_putstr("KO\n");
+				break ;
+			}
 		}
 	}
 }
@@ -73,6 +79,7 @@ int		main(int argc, char **argv)
 			a = pile_init(argv);
 			pile_fill_a(a, argv);
 			read_stdin(a);
+			ft_putstr("LOL");
 		}
 		else
 			ft_putstr_error("Error\n");
