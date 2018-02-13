@@ -23,8 +23,6 @@ int		main(int argc, char **argv)
 	{
 		if ((ft_strcmp(argv[1], "-v")) == 0)
 			bonus = 1;
-		else if ((ft_strcmp(argv[1], "-c")) == 0)
-			bonus = 2;
 		if (valid_tab(argv, bonus) && ft_test_duplicate(argv, bonus))
 		{
 			a = pile_init(argv, bonus);

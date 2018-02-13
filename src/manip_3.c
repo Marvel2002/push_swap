@@ -12,28 +12,6 @@
 
 #include "struct.h"
 
-void	print_ra(t_env *a)
-{
-	if (a->color && pile_is_sort(a) && a->size_b == 0)
-	{
-		ft_putstr(YEL);
-		ft_putstr("ra\n");
-	}
-	else
-		ft_putstr("ra\n");
-}
-
-void	print_rra(t_env *a)
-{
-	if (a->color && pile_is_sort(a) && a->size_b == 0)
-	{
-		ft_putstr(YEL);
-		ft_putstr("rra\n");
-	}
-	else
-		ft_putstr("rra\n");
-}
-
 void	raise_a_down_b(t_env *a)
 {
 	a->size_a++;

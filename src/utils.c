@@ -17,6 +17,7 @@ void	display(t_env *a)
 	int i;
 
 	i = 0;
+	ft_putstr(YEL);
 	ft_putstr("pile a = ");
 	while (i < a->size_a)
 	{
@@ -25,6 +26,7 @@ void	display(t_env *a)
 	}
 	ft_putchar('\n');
 	i = 0;
+	ft_putstr(CYAN);
 	ft_putstr("pile b = ");
 	while (i < a->size_b)
 	{
@@ -32,6 +34,7 @@ void	display(t_env *a)
 		i++;
 	}
 	ft_putchar('\n');
+	ft_putstr(NORM);
 }
 
 void	ft_free(t_env *a)

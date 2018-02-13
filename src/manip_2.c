@@ -40,7 +40,7 @@ void	ft_reverse_rotate_a(t_env *a)
 	a->pile_a[i].nb = nb_tmp;
 	a->pile_a[i].index = index_tmp;
 	if (a->push_swap)
-		print_rra(a);
+		ft_putstr("rra\n");
 	if (a->display)
 		display(a);
 }
@@ -67,6 +67,8 @@ void	ft_reverse_rotate_b(t_env *a)
 	}
 	if (a->push_swap)
 		ft_putstr("rrb\n");
+	if (a->display)
+		display(a);
 }
 
 void	ft_push_a(t_env *a)

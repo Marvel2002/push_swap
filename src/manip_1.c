@@ -27,15 +27,7 @@ void	ft_swap_a(t_env *a)
 		a->pile_a[1].index = index_tmp;
 	}
 	if (a->push_swap)
-	{
-		if (a->color && pile_is_sort(a) && a->size_b == 0)
-		{
-			ft_putstr(YEL);
-			ft_putstr("sa\n");
-		}
-		else
-			ft_putstr("sa\n");
-	}
+		ft_putstr("sa\n");
 	if (a->display)
 		display(a);
 }
@@ -88,7 +80,7 @@ void	ft_rotate_a(t_env *a)
 	a->pile_a[i].nb = nb_tmp;
 	a->pile_a[i].index = index_tmp;
 	if (a->push_swap)
-		print_ra(a);
+		ft_putstr("ra\n");
 	if (a->display)
 		display(a);
 }

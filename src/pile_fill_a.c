@@ -88,8 +88,10 @@ void		read_stdin(t_env *a)
 		{
 			ft_putstr_error("Error\n");
 			ft_free(a);
+			free(buf);
 			exit(1);
 		}
+		free(buf);
 	}
 	if (pile_is_sort(a) && a->size_b == 0)
 		ft_putstr("OK\n");

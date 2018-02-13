@@ -48,7 +48,7 @@ void			pile_fill_a(t_env *a, char **argv)
 	int		pile_max;
 	char	**tab;
 
-	i = (a->color || a->display) ? 2 : 1;
+	i = (a->display) ? 2 : 1;
 	pile_max = 0;
 	tab = NULL;
 	while (argv[i])
@@ -73,10 +73,8 @@ t_env			*pile_init(char **argv, int bonus)
 	t_env *a;
 
 	a = (t_env *)ft_memalloc(sizeof(t_env));
-	if (bonus == 1)
+	if (bonus)
 		a->display = 1;
-	else if (bonus == 2)
-		a->color = 1;
 	a->size_max = count_int_argv(argv, bonus);
 	a->size_a = a->size_max;
 	if (a->size_max > 11)

@@ -15,7 +15,9 @@
 # define STRUCT_H
 
 # include "../libft/libft.h"
-# define YEL   "\x1B[33m"
+# define YEL   "\033[1m\033[33m"
+# define CYAN	"\033[1m\033[36m"
+# define NORM "\x1B[0m"
 
 typedef	struct	s_te
 {
@@ -43,7 +45,6 @@ typedef	struct	s_env
 	int			checker;
 	int			next;
 	int			i;
-	int			color;
 	int			display;
 }				t_env;
 
@@ -83,8 +84,6 @@ void			ft_putstr_error(char const *s);
 int				next_is_in_b(t_env *a);
 void			move_in_b(t_env *a);
 void			move_in_a(t_env *a);
-void			print_ra(t_env *a);
-void			print_rra(t_env *a);
 void			find_and_place_next(t_env *a);
 void			ft_free(t_env *a);
 int				pos_zero(t_env *a);
