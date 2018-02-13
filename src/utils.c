@@ -18,22 +18,22 @@ void	display(t_env *a)
 
 	i = 0;
 	ft_putstr(YEL);
-	ft_putstr("pile a = ");
+	ft_putstr("Pile A = [ ");
 	while (i < a->size_a)
 	{
 		ft_putnbr_c(a->pile_a[i].nb, ' ');
 		i++;
 	}
-	ft_putchar('\n');
+	ft_putstr("]\n");
 	i = 0;
 	ft_putstr(CYAN);
-	ft_putstr("pile b = ");
+	ft_putstr("Pile B = [ ");
 	while (i < a->size_b)
 	{
 		ft_putnbr_c(a->pile_b[i].nb, ' ');
 		i++;
 	}
-	ft_putchar('\n');
+	ft_putstr("]\n");
 	ft_putstr(NORM);
 }
 

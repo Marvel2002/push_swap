@@ -65,6 +65,8 @@ void			pile_fill_a(t_env *a, char **argv)
 		free_tab(tab);
 		i++;
 	}
+	if (!ft_double(a))
+		ft_quit(a);
 	pile_fill_a_index(a);
 }
 
@@ -84,25 +86,4 @@ t_env			*pile_init(char **argv, int bonus)
 	a->pile_a = (t_pile *)ft_memalloc(sizeof(t_pile) * a->size_max);
 	a->pile_b = (t_pile *)ft_memalloc(sizeof(t_pile) * a->size_max);
 	return (a);
-}
-
-void			ft_putstr_error(char const *s)
-{
-	if (!s)
-		return ;
-	while (*s)
-	{
-		write(2, &*s, 1);
-		s++;
-	}
-}
-
-int				valid_char(char nb, char nb_plus)
-{
-	if (ft_isdigit(nb) && !(nb_plus == '-'))
-		return (1);
-	else if (nb == '-' && ft_isdigit(nb_plus))
-		return (1);
-	else
-		return (0);
 }

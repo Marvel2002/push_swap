@@ -23,7 +23,7 @@ int		main(int argc, char **argv)
 	{
 		if ((ft_strcmp(argv[1], "-v")) == 0)
 			bonus = 1;
-		if (valid_tab(argv, bonus) && ft_test_duplicate(argv, bonus))
+		if (valid_tab(argv, bonus))
 		{
 			a = pile_init(argv, bonus);
 			pile_fill_a(a, argv);
@@ -31,7 +31,7 @@ int		main(int argc, char **argv)
 			ft_free(a);
 		}
 		else
-			ft_putstr_error("Error\n");
+			write(2, "Error\n", 6);
 	}
 	return (0);
 }

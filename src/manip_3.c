@@ -33,3 +33,28 @@ void	ft_rrr(t_env *a)
 	if (a->display)
 		display(a);
 }
+
+int		ft_longtoi(const char *str)
+{
+	long	i;
+	int		negativ;
+	long	nb;
+
+	i = 0;
+	negativ = 0;
+	nb = 0;
+	if (str[i] == '-')
+	{
+		negativ = 1;
+		i++;
+	}
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		nb *= 10;
+		nb += str[i] - '0';
+		if ((nb > 2147483647 && !negativ) || (nb > 2147483648 && negativ))
+			return (0);
+		i++;
+	}
+	return (1);
+}

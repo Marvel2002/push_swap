@@ -86,7 +86,7 @@ void		read_stdin(t_env *a)
 	{
 		if (!parse_instruct(buf, a))
 		{
-			ft_putstr_error("Error\n");
+			write(2, "Error\n", 6);
 			ft_free(a);
 			free(buf);
 			exit(1);

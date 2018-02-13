@@ -53,7 +53,8 @@ int				parse_instruct(char *buf, t_env *a);
 void			read_stdin(t_env *a);
 t_env			*pile_init(char **argv, int bonus);
 void			pile_fill_a(t_env *a, char **argv);
-int				ft_test_duplicate(char **argv, int bonus);
+int				ft_double(t_env *a);
+void			ft_quit(t_env *a);
 void			ft_swap_a(t_env *a);
 void			ft_swap_b(t_env *a);
 void			ft_ss(t_env *a);
@@ -91,6 +92,5 @@ int				valid_char(char nb, char nb_plus);
 int				ft_longtoi(const char *str);
 int				ft_compare_one_tab(char **tab);
 int				ft_compare_tabs(char **tab_1, char **tab_2);
-int				ft_test_duplicate(char **argv, int bonus);
 
 #endif
