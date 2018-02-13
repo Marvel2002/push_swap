@@ -39,7 +39,7 @@ int		valid_tab(char **argv, int bonus)
 
 int				valid_char(char nb, char nb_plus)
 {
-	if (ft_isdigit(nb) && !(nb_plus == '-'))
+	if (ft_isdigit(nb) && nb_plus != '-')
 		return (1);
 	else if (nb == '-' && ft_isdigit(nb_plus))
 		return (1);
