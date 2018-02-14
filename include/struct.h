@@ -19,14 +19,6 @@
 # define CYAN	"\033[1m\033[36m"
 # define NORM "\x1B[0m"
 
-typedef	struct	s_te
-{
-	int		i;
-	int		j;
-	char	**tab_1;
-	char	**tab_2;
-}				t_te;
-
 typedef	struct	s_pile
 {
 	int			nb;
