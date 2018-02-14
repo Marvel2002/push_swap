@@ -6,7 +6,7 @@
 /*   By: mmatime <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/12 10:39:59 by mmatime           #+#    #+#             */
-/*   Updated: 2018/02/12 10:40:03 by mmatime          ###   ########.fr       */
+/*   Updated: 2018/02/14 18:08:55 by mmatime          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		valid_tab(char **argv, int bonus)
 		j = 0;
 		while (argv[i][j])
 		{
+			if (!ft_longtoi(argv[i]))
+				return (0);
 			while (argv[i][j] == ' ' || argv[i][j] == '\t')
 				j++;
 			if (valid_char(argv[i][j], argv[i][j + 1]))
